@@ -9,6 +9,7 @@ return [
         'exchange_id' => '交易标的',
         'peroid' => '周期数列',
         'price' => '提醒价格',
+        'online' => '上线'
     ],
     'options' => [
     ],

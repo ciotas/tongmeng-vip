@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Reminder;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,6 +22,7 @@ class CreateRemindersTable extends Migration
             $table->string('peroid')->nullable()->comment('周期');
             $table->decimal('price',16, 8)->default('0')->nullable()->comment('提醒价格');
             $table->unsignedBigInteger('admin_user_id')->nullable();
+            $table->unsignedInteger('online')->nullable()->default(1)->comment('上线');
             $table->timestamps();
         });
     }

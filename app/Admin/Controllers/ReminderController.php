@@ -33,6 +33,7 @@ class ReminderController extends AdminController
                 return Exchange::$periods[$val];
             });
             $grid->column('price');
+            $grid->column('online')->switch();
             $grid->column('updated_at')->sortable();
         
             $grid->disableViewButton();
@@ -56,6 +57,7 @@ class ReminderController extends AdminController
             $form->select('exchange_id');
             $form->select('peroid')->options(Exchange::$periods)->help('大周期-小周期-极小周期');
             $form->decimal('price');
+            $form->switch('online');
             $form->hidden('admin_user_id');
             $form->display('created_at');
             $form->display('updated_at');

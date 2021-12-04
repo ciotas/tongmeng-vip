@@ -10,5 +10,4 @@ class Reminder extends Model
 {
 	use HasDateTimeFormatter;    
 
-	
 }
