@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Renderable\ReminderRecordsTable;
 use App\Models\Exchange;
 use App\Models\Market;
 use App\Models\Reminder;
@@ -32,8 +33,14 @@ class ReminderController extends AdminController
             $grid->column('peroid')->display(function($val) {
                 return Exchange::$periods[$val];
             });
-            $grid->column('price');
+            $grid->column('price')->display(function($val) {
+                return floatval($val);
+            });
             $grid->column('online')->switch();
+            $grid->column('records', '触发记录')->display('查看')->expand(function () {
+                
+                return ReminderRecordsTable::make();
+            });
             $grid->column('updated_at')->sortable();
         
             $grid->disableViewButton();

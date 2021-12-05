@@ -17,6 +17,8 @@ Route::group([
     $router->resource('reminders', 'ReminderController');
     // 市场标的
     $router->resource('exchanges', 'ExchangeController');
+    // 个人中心
+    $router->resource('admin_users', 'AdminUserController');
     
     // api
     // 获取市场

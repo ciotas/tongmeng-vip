@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reminder extends Model
 {
-	use HasDateTimeFormatter;    
+	use HasDateTimeFormatter;   
+	
+	public function exchange()
+	{
+		return $this->belongsTo(Exchange::class);
+	}
 
 }

@@ -11,4 +11,9 @@ class ReminderRecord extends Model
 	use HasDateTimeFormatter;
     protected $table = 'reminder_records';
     protected $fillable = ['reminder_id', 'price'];
+
+    public function reminder()
+    {
+        return $this->belongsTo(Reminder::class);
+    }
 }
