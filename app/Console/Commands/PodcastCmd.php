@@ -2,25 +2,25 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\ReminderJob;
-use App\Models\Reminder;
+use App\Jobs\PodcastJob;
+use App\Models\Podcast;
 use Illuminate\Console\Command;
 
-class ReminderCmd extends Command
+class PodcastCmd extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'reminder';
+    protected $signature = 'podcast:cmd';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = '价格提醒';
+    protected $description = '订阅提醒';
 
     /**
      * Create a new command instance.
@@ -39,16 +39,14 @@ class ReminderCmd extends Command
      */
     public function handle()
     {
-        for($i = 0; $i < 20; $i++)
-        {
-            $reminders = Reminder::where('online', 1)->get();
-            foreach($reminders as $reminder)
+        for($i = 0; $i < 20; $i++) {
+            $podcasts = Podcast::where('online', 1)->get();
+            foreach($podcasts as $podcast)
             {
-                ReminderJob::dispatch($reminder);
+                PodcastJob::dispatch($podcast);
             }
             sleep(3);
         }
-        
         return Command::SUCCESS;
     }
 }

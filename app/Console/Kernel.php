@@ -15,8 +15,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('exchange:info')->everyMinute();
+        $schedule->command('exchange:info')->everySixHours();
         $schedule->command('reminder')->everyMinute();
+        $schedule->command('podcast:cmd')->everyMinute();
     }
 
     /**

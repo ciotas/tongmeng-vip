@@ -57,12 +57,17 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection last_used_at
      * @property Grid\Column|Collection tokenable_id
      * @property Grid\Column|Collection tokenable_type
+     * @property Grid\Column|Collection exchange_id
+     * @property Grid\Column|Collection image
+     * @property Grid\Column|Collection online
+     * @property Grid\Column|Collection period
      * @property Grid\Column|Collection price
+     * @property Grid\Column|Collection status
+     * @property Grid\Column|Collection tips
      * @property Grid\Column|Collection reminder_id
      * @property Grid\Column|Collection admin_user_id
-     * @property Grid\Column|Collection exchange_id
-     * @property Grid\Column|Collection online
      * @property Grid\Column|Collection peroid
+     * @property Grid\Column|Collection remark
      * @property Grid\Column|Collection email_verified_at
      * @property Grid\Column|Collection mobile
      *
@@ -112,12 +117,17 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection last_used_at(string $label = null)
      * @method Grid\Column|Collection tokenable_id(string $label = null)
      * @method Grid\Column|Collection tokenable_type(string $label = null)
+     * @method Grid\Column|Collection exchange_id(string $label = null)
+     * @method Grid\Column|Collection image(string $label = null)
+     * @method Grid\Column|Collection online(string $label = null)
+     * @method Grid\Column|Collection period(string $label = null)
      * @method Grid\Column|Collection price(string $label = null)
+     * @method Grid\Column|Collection status(string $label = null)
+     * @method Grid\Column|Collection tips(string $label = null)
      * @method Grid\Column|Collection reminder_id(string $label = null)
      * @method Grid\Column|Collection admin_user_id(string $label = null)
-     * @method Grid\Column|Collection exchange_id(string $label = null)
-     * @method Grid\Column|Collection online(string $label = null)
      * @method Grid\Column|Collection peroid(string $label = null)
+     * @method Grid\Column|Collection remark(string $label = null)
      * @method Grid\Column|Collection email_verified_at(string $label = null)
      * @method Grid\Column|Collection mobile(string $label = null)
      */
@@ -172,12 +182,17 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection last_used_at
      * @property Show\Field|Collection tokenable_id
      * @property Show\Field|Collection tokenable_type
+     * @property Show\Field|Collection exchange_id
+     * @property Show\Field|Collection image
+     * @property Show\Field|Collection online
+     * @property Show\Field|Collection period
      * @property Show\Field|Collection price
+     * @property Show\Field|Collection status
+     * @property Show\Field|Collection tips
      * @property Show\Field|Collection reminder_id
      * @property Show\Field|Collection admin_user_id
-     * @property Show\Field|Collection exchange_id
-     * @property Show\Field|Collection online
      * @property Show\Field|Collection peroid
+     * @property Show\Field|Collection remark
      * @property Show\Field|Collection email_verified_at
      * @property Show\Field|Collection mobile
      *
@@ -227,12 +242,17 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection last_used_at(string $label = null)
      * @method Show\Field|Collection tokenable_id(string $label = null)
      * @method Show\Field|Collection tokenable_type(string $label = null)
+     * @method Show\Field|Collection exchange_id(string $label = null)
+     * @method Show\Field|Collection image(string $label = null)
+     * @method Show\Field|Collection online(string $label = null)
+     * @method Show\Field|Collection period(string $label = null)
      * @method Show\Field|Collection price(string $label = null)
+     * @method Show\Field|Collection status(string $label = null)
+     * @method Show\Field|Collection tips(string $label = null)
      * @method Show\Field|Collection reminder_id(string $label = null)
      * @method Show\Field|Collection admin_user_id(string $label = null)
-     * @method Show\Field|Collection exchange_id(string $label = null)
-     * @method Show\Field|Collection online(string $label = null)
      * @method Show\Field|Collection peroid(string $label = null)
+     * @method Show\Field|Collection remark(string $label = null)
      * @method Show\Field|Collection email_verified_at(string $label = null)
      * @method Show\Field|Collection mobile(string $label = null)
      */

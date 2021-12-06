@@ -4,8 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "829090387afd9fe48d58b9eac2b8a266",
+    "content-hash": "e6b3cd6e0ae89ba808c3c62270637f70",
     "packages": [
+        {
+            "name": "aliyuncs/oss-sdk-php",
+            "version": "v2.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aliyun/aliyun-oss-php-sdk.git",
+                "reference": "4ccead614915ee6685bf30016afb01aabd347e46"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aliyun/aliyun-oss-php-sdk/zipball/4ccead614915ee6685bf30016afb01aabd347e46",
+                "reference": "4ccead614915ee6685bf30016afb01aabd347e46",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "satooshi/php-coveralls": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "OSS\\": "src/OSS"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aliyuncs",
+                    "homepage": "http://www.aliyun.com"
+                }
+            ],
+            "description": "Aliyun OSS SDK for PHP",
+            "homepage": "http://www.aliyun.com/product/oss/",
+            "support": {
+                "issues": "https://github.com/aliyun/aliyun-oss-php-sdk/issues",
+                "source": "https://github.com/aliyun/aliyun-oss-php-sdk/tree/v2.4.3"
+            },
+            "time": "2021-08-25T13:03:58+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.3",
@@ -1449,6 +1494,61 @@
             "time": "2021-10-06T17:43:30+00:00"
         },
         {
+            "name": "jacobcyl/ali-oss-storage",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jacobcyl/Aliyun-oss-storage.git",
+                "reference": "c0cb9ba1d3faf22a1e04a03602aac90a187b5959"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jacobcyl/Aliyun-oss-storage/zipball/c0cb9ba1d3faf22a1e04a03602aac90a187b5959",
+                "reference": "c0cb9ba1d3faf22a1e04a03602aac90a187b5959",
+                "shasum": ""
+            },
+            "require": {
+                "aliyuncs/oss-sdk-php": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jacobcyl\\AliOSS\\AliOssServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jacobcyl\\AliOSS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jacobcyl",
+                    "email": "cyl.jacob@gmail.com"
+                }
+            ],
+            "description": "aliyun oss filesystem storage for laravel 5+",
+            "homepage": "http://jacobcyl.github.io/Aliyun-oss-storage/",
+            "keywords": [
+                "aliyun",
+                "filesystems",
+                "laravel",
+                "oss",
+                "storage"
+            ],
+            "support": {
+                "issues": "https://github.com/jacobcyl/Aliyun-oss-storage/issues",
+                "source": "https://github.com/jacobcyl/Aliyun-oss-storage/tree/2.1.0"
+            },
+            "time": "2018-04-02T03:44:01+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v8.74.0",
             "source": {
@@ -1619,6 +1719,83 @@
                 "source": "https://github.com/laravel/framework"
             },
             "time": "2021-11-30T15:26:05+00:00"
+        },
+        {
+            "name": "laravel/horizon",
+            "version": "v5.7.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/horizon.git",
+                "reference": "393e0a9a66a1028d236fc7067eb2f8ba655e2e15"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/393e0a9a66a1028d236fc7067eb2f8ba655e2e15",
+                "reference": "393e0a9a66a1028d236fc7067eb2f8ba655e2e15",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-pcntl": "*",
+                "ext-posix": "*",
+                "illuminate/contracts": "^8.17",
+                "illuminate/queue": "^8.17",
+                "illuminate/support": "^8.17",
+                "nesbot/carbon": "^2.17",
+                "php": "^7.3|^8.0",
+                "ramsey/uuid": "^4.0",
+                "symfony/error-handler": "^5.0",
+                "symfony/process": "^5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.0",
+                "predis/predis": "^1.1"
+            },
+            "suggest": {
+                "ext-redis": "Required to use the Redis PHP driver.",
+                "predis/predis": "Required when not using the Redis PHP driver (^1.1)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Horizon\\HorizonServiceProvider"
+                    ],
+                    "aliases": {
+                        "Horizon": "Laravel\\Horizon\\Horizon"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Horizon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Dashboard and code-driven configuration for Laravel queues.",
+            "keywords": [
+                "laravel",
+                "queue"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/horizon/issues",
+                "source": "https://github.com/laravel/horizon/tree/v5.7.16"
+            },
+            "time": "2021-11-23T17:27:41+00:00"
         },
         {
             "name": "laravel/sanctum",

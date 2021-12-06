@@ -19,6 +19,10 @@ Route::group([
     $router->resource('exchanges', 'ExchangeController');
     // 个人中心
     $router->resource('admin_users', 'AdminUserController');
+    // 订阅
+    $router->resource('podcasts', 'PodcastController');
+    // 订阅用户
+    $router->resource('subscribers', 'SubscriberController');
     
     // api
     // 获取市场
