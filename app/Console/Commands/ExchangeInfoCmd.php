@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\ExchangeInfoJob;
 use App\Models\Exchange;
 use App\Service\BinanceFutureService;
 use Illuminate\Console\Command;
@@ -41,32 +42,7 @@ class ExchangeInfoCmd extends Command
      */
     public function handle()
     {
-        $res = $this->binance_future->exchange_info();
-        $arr = [];
-        if ($res) {
-            $symbols = $res['symbols'];
-            foreach($symbols as $symbol)
-            {
-                $exchange = Exchange::where(['market'=> Exchange::BINANCE_FUTURES_USDT, 'symbol'=>$symbol['symbol']])->first();
-                if (!$exchange && ($symbol['status'] == 'TRADING')) {
-                    Exchange::create([
-                        'symbol' => $symbol['symbol'],
-                        'pair' => $symbol['pair'],
-                        'pricePrecision' => $symbol['pricePrecision'],
-                        'quantityPrecision' => $symbol['quantityPrecision'],
-                        'quoteAsset' => $symbol['quoteAsset'],
-                        'baseAsset' => $symbol['baseAsset'],
-                        'market' => Exchange::BINANCE_FUTURES_USDT
-                    ]);
-                }
-                
-                if ($exchange && ($symbol['status'] != 'TRADING'))
-                {
-                    $exchange->delete();
-                }
-                
-            }
-        }
+        ExchangeInfoJob::dispatch();
         return Command::SUCCESS;
     }
 }
