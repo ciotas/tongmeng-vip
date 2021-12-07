@@ -40,37 +40,38 @@ class PodcastJob implements ShouldQueue
         $binance_future = new BinanceFutureService();
         $client = new Client();
         $exchange = Exchange::find($this->podcast->exchange_id);
-                $symbol = $exchange ? strtoupper($exchange->symbol) : null;
-                if ($symbol) {
-                    $res = $binance_future->ticker_price($symbol);
-                    if ($res) {
-                        if ($res['price'] < $this->podcast->price && $this->podcast->status == 1) {
-                            $this->podcast->status = 0;
-                            $this->podcast->save();
-                        }
-                        elseif ($res['price'] >= $this->podcast->price && $this->podcast->status == 0)
-                        {
-                            Log::info($res['price']);
-                            
-                            // 推送提醒
-                            $podcast_price = floatval($this->podcast->price);
-                            $response = $client->post(env('XIZHI_PODCAST_API'),
-                            ['form_params' => [
-                                'title' => $symbol.'价格触发'.$podcast_price,
-                                'content' => "标的：".$symbol."  触发价格：".$podcast_price."  触发时间：".Carbon::now()->toDateTimeString(),
-                                ]
-                            ]);
-                            Log::info('Podcast Response:');
-                            Log::info(json_encode($response));
-                            if ($response->getStatusCode() == 200)
-                            {
-                                $this->podcast->status = 1;
-                                $this->podcast->save();
-                                // 记录
-                                
-                            }
-                        }
+        $symbol = $exchange ? strtoupper($exchange->symbol) : null;
+        if ($symbol) {
+            $res = $binance_future->ticker_price($symbol);
+            Log::info($res['price']);
+            if ($res) {
+                if ($res['price'] < $this->podcast->price && $this->podcast->status == 1) {
+                    $this->podcast->status = 0;
+                    $this->podcast->save();
+                    Log::info('订阅推送，下次一定');
+                }
+                elseif ($res['price'] >= $this->podcast->price && $this->podcast->status == 0)
+                {
+                    Log::info('订阅推送');
+                    // 推送提醒
+                    $podcast_price = floatval($this->podcast->price);
+                    $response = $client->post(env('XIZHI_PODCAST_API'),
+                    ['form_params' => [
+                        'title' => $symbol.'价格触发'.$podcast_price,
+                        'content' => "标的：".$symbol."  触发价格：".$podcast_price."  触发时间：".Carbon::now()->toDateTimeString(),
+                        ]
+                    ]);
+                    Log::info('Podcast Response:');
+                    Log::info(json_encode($response));
+                    if ($response->getStatusCode() == 200)
+                    {
+                        $this->podcast->status = 1;
+                        $this->podcast->save();
+                        // 记录
+                        
                     }
                 }
+            }
+        }
     }
 }
