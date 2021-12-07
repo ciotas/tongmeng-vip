@@ -9,7 +9,6 @@ use Illuminate\Console\Command;
 
 class ExchangeInfoCmd extends Command
 {
-    protected $binance_future;
     /**
      * The name and signature of the console command.
      *
@@ -29,9 +28,8 @@ class ExchangeInfoCmd extends Command
      *
      * @return void
      */
-    public function __construct(BinanceFutureService $binanceFutureService)
+    public function __construct()
     {
-        $this->binance_future = $binanceFutureService;
         parent::__construct();
     }
 
