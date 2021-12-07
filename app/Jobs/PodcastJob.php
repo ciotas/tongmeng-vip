@@ -43,6 +43,7 @@ class PodcastJob implements ShouldQueue
         $symbol = $exchange ? strtoupper($exchange->symbol) : null;
         if ($symbol) {
             $res = $binance_future->ticker_price($symbol);
+            Log::info('订阅推送');
             Log::info($res['price']);
             if ($res) {
                 if ($res['price'] < $this->podcast->price && $this->podcast->status == 1) {
@@ -52,7 +53,7 @@ class PodcastJob implements ShouldQueue
                 }
                 elseif ($res['price'] >= $this->podcast->price && $this->podcast->status == 0)
                 {
-                    Log::info('订阅推送');
+                    Log::info('开始订阅推送');
                     // 推送提醒
                     $podcast_price = floatval($this->podcast->price);
                     $response = $client->post(env('XIZHI_PODCAST_API'),

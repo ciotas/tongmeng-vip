@@ -46,6 +46,7 @@ class ReminderJob implements ShouldQueue
         $symbol = $exchange ? strtoupper($exchange->symbol) : null;
         if ($symbol) {
             $res = $binance_future->ticker_price($symbol);
+            Log::info('提醒推送');
             Log::info($res['price']);
             if ($res) {
                 if ($res['price'] < $this->reminder->price && $this->reminder->status == 1) {
@@ -55,7 +56,7 @@ class ReminderJob implements ShouldQueue
                 }
                 elseif ($res['price'] >= $this->reminder->price && $this->reminder->status == 0)
                 {
-                    Log::info('提醒推送');
+                    Log::info('开始提醒推送');
                     // 推送提醒
                     $push_api = AdminUser::find($this->reminder->admin_user_id)->push_api;
                     if ($push_api) {
