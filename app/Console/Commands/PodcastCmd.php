@@ -39,13 +39,13 @@ class PodcastCmd extends Command
      */
     public function handle()
     {
-        for($i = 0; $i < 20; $i++) {
+        for($i = 0; $i < 3; $i++) {
             $podcasts = Podcast::where('online', 1)->get();
             foreach($podcasts as $podcast)
             {
                 PodcastJob::dispatch($podcast);
             }
-            sleep(3);
+            sleep(20);
         }
         return Command::SUCCESS;
     }

@@ -39,14 +39,14 @@ class ReminderCmd extends Command
      */
     public function handle()
     {
-        for($i = 0; $i < 20; $i++)
+        for($i = 0; $i < 3; $i++)
         {
             $reminders = Reminder::where('online', 1)->get();
             foreach($reminders as $reminder)
             {
                 ReminderJob::dispatch($reminder);
             }
-            sleep(3);
+            sleep(20);
         }
         
         return Command::SUCCESS;
