@@ -4,10 +4,12 @@ namespace App\Console\Commands;
 
 use App\Jobs\ReminderJob;
 use App\Models\Reminder;
+use App\Service\BinanceFutureService;
 use Illuminate\Console\Command;
 
 class ReminderCmd extends Command
 {
+    protected $binanceFutureService; 
     /**
      * The name and signature of the console command.
      *
@@ -27,8 +29,9 @@ class ReminderCmd extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(BinanceFutureService $binanceFutureService)
     {
+        $this->binanceFutureService = $binanceFutureService;
         parent::__construct();
     }
 
@@ -44,7 +47,7 @@ class ReminderCmd extends Command
             $reminders = Reminder::where('online', 1)->get();
             foreach($reminders as $reminder)
             {
-                ReminderJob::dispatch($reminder);
+                ReminderJob::dispatch($reminder, $this->binanceFutureService);
             }
             sleep(20);
         }

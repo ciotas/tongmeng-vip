@@ -4,10 +4,12 @@ namespace App\Console\Commands;
 
 use App\Jobs\PodcastJob;
 use App\Models\Podcast;
+use App\Service\BinanceFutureService;
 use Illuminate\Console\Command;
 
 class PodcastCmd extends Command
 {
+    protected $binanceFutureService;
     /**
      * The name and signature of the console command.
      *
@@ -27,8 +29,9 @@ class PodcastCmd extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(BinanceFutureService $binanceFutureService)
     {
+        $this->binanceFutureService = $binanceFutureService;
         parent::__construct();
     }
 
@@ -43,7 +46,7 @@ class PodcastCmd extends Command
             $podcasts = Podcast::where('online', 1)->get();
             foreach($podcasts as $podcast)
             {
-                PodcastJob::dispatch($podcast);
+                PodcastJob::dispatch($podcast, $this->binanceFutureService );
             }
             sleep(20);
         }

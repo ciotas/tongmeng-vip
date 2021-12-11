@@ -19,14 +19,15 @@ class PodcastJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $podcast;
+    public $podcast, $binanceFutureService;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Podcast $podcast)
+    public function __construct(Podcast $podcast, $binanceFutureService)
     {
+        $this->binanceFutureService = $binanceFutureService;
         $this->podcast = $podcast;
     }
 
@@ -37,15 +38,15 @@ class PodcastJob implements ShouldQueue
      */
     public function handle()
     {
-        $binance_future = new BinanceFutureService();
+        $binance_future = $this->binanceFutureService;
         $client = new Client();
         $exchange = Exchange::find($this->podcast->exchange_id);
         $symbol = $exchange ? strtoupper($exchange->symbol) : null;
         if ($symbol) {
             $res = $binance_future->ticker_price($symbol);
             Log::info('订阅推送');
-            Log::info($res['price']);
             if ($res) {
+                Log::info($res['price']);
                 if ($res['price'] < $this->podcast->price && $this->podcast->status == 1) {
                     $this->podcast->status = 0;
                     $this->podcast->save();

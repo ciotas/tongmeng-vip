@@ -21,14 +21,15 @@ class ReminderJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $reminder;
+    protected $reminder, $binanceFutureService;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Reminder $reminder)
+    public function __construct(Reminder $reminder, $binanceFutureService)
     {
+        $this->binanceFutureService = $binanceFutureService;
         $this->reminder = $reminder;
     }
 
@@ -39,7 +40,7 @@ class ReminderJob implements ShouldQueue
      */
     public function handle()
     {
-        $binance_future = new BinanceFutureService();
+        $binance_future = $this->binanceFutureService;
         $client = new Client();
 
         $exchange = Exchange::find($this->reminder->exchange_id);
@@ -47,8 +48,8 @@ class ReminderJob implements ShouldQueue
         if ($symbol) {
             $res = $binance_future->ticker_price($symbol);
             Log::info('提醒推送');
-            Log::info($res['price']);
             if ($res) {
+                Log::info($res['price']);
                 if ($res['price'] < $this->reminder->price && $this->reminder->status == 1) {
                     $this->reminder->status = 0;
                     $this->reminder->save();
