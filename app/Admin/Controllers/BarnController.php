@@ -2,7 +2,6 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\AdminUser;
 use App\Models\Barn;
 use App\Models\Exchange;
 use App\Service\BinanceFutureService;
@@ -91,11 +90,7 @@ class BarnController extends AdminController
             $form->select('exchange_id')->rules('required');//->load('buy_price', 'api/price');
             $form->select('period')->options(Exchange::$periods)->rules('required');
             $form->decimal('buy_price');
-            $form->decimal('stoploss_price');
-            // if ($form->isEditing()) {
-            //     $form->decimal('real_amount');
-            // }
-            
+            $form->decimal('stoploss_price');           
             $form->multipleImage('images')
             ->uniqueName()
             ->move('images')
@@ -104,7 +99,7 @@ class BarnController extends AdminController
             ->autoUpload()
             ->sortable()
             ->help('可为空，可同时上传质变图、挂单位置图、离场图等');
-            
+            $form->hidden('admin_user_id');
             $form->disableViewButton();
             $form->disableViewCheck();
             $form->saving(function(Form $form) {
