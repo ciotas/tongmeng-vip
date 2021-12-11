@@ -39,7 +39,7 @@ class ReminderController extends AdminController
             });
             $grid->column('price')->display(function($val) {
                 return floatval($val);
-            });
+            })->editable();
             $grid->column('online')->switch();
             $grid->column('records', '触发记录')->display('查看')->expand(function () {
                 
