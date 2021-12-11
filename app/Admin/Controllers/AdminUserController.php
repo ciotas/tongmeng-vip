@@ -20,7 +20,9 @@ class AdminUserController extends AdminController
     protected function grid()
     {
         return Grid::make(new AdminUser(), function (Grid $grid) {
-            $grid->model()->where('id', Admin::user()->id);
+            if ( Admin::user()->getKey() > 1) {
+                $grid->model()->where('id', Admin::user()->getKey());
+            }
 
             $grid->column('id')->sortable();
             $grid->column('username');

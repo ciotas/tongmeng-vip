@@ -22,8 +22,9 @@ class ReminderController extends AdminController
     protected function grid()
     {
         return Grid::make(new Reminder(), function (Grid $grid) {
-
-            $grid->model()->where('admin_user_id', Admin::user()->id);
+            if ( Admin::user()->getKey() > 1) {
+                $grid->model()->where('admin_user_id', Admin::user()->getKey());
+            }
 
             $grid->column('id')->sortable();
             $grid->column('market', '交易所')->display(function($val) {

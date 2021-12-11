@@ -23,6 +23,9 @@ class BarnController extends AdminController
     protected function grid()
     {
         return Grid::make(new Barn(), function (Grid $grid) {
+            if ( Admin::user()->getKey() > 1) {
+                $grid->model()->where('admin_user_id', Admin::user()->getKey());
+            }
             // $grid->column('id')->sortable();
             // $grid->column('market')->display(function($val) {
             //     return Exchange::$marketsMap[$val];
@@ -102,12 +105,11 @@ class BarnController extends AdminController
             ->sortable()
             ->help('可为空，可同时上传质变图、挂单位置图、离场图等');
             
-            if ($form->isEditing()) {
-               
-            }
-            
             $form->disableViewButton();
             $form->disableViewCheck();
+            $form->saving(function(Form $form) {
+                $form->admin_user_id = Admin::user()->getKey();
+            });
         });
     }
 }
