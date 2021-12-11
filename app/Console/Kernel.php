@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('exchange:info')->everyMinute()->withoutOverlapping();
-        $schedule->command('exchange:info')->daily()->at('10:00')->withoutOverlapping();;
+        $schedule->command('exchange:info')->everyMinute()->withoutOverlapping();
+        // $schedule->command('exchange:info')->daily()->at('10:00')->withoutOverlapping();;
         $schedule->command('reminder')->everyMinute()->runInBackground()->withoutOverlapping();
         $schedule->command('podcast:cmd')->everyMinute()->runInBackground()->withoutOverlapping();
     }
