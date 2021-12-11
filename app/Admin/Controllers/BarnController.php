@@ -68,6 +68,11 @@ class BarnController extends AdminController
                
                 return '';
             });
+            if ( Admin::user()->getKey() == 1) {
+                $grid->column('admin_user_id', '用户')->display(function($val) {
+                    return Admin::user()->name;
+                });
+            }
             $grid->column('updated_at');
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
