@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Models\AdminUser;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -19,12 +20,22 @@ class AdminUserController extends AdminController
     protected function grid()
     {
         return Grid::make(new AdminUser(), function (Grid $grid) {
+            $grid->model()->where('id', Admin::user()->id);
+
             $grid->column('id')->sortable();
             $grid->column('username');
             $grid->column('name');
             // $grid->column('avatar');
-            $grid->column('push_api');
+            $grid->column('push_api')->display('查看')->modal(function(){
+                return $this->push_api;
+            });
             $grid->column('points');
+            $grid->column('crpto_max_loss');
+            $grid->column('a_stock_max_loss');
+            $grid->column('hk_stock_max_loss');
+            $grid->column('us_stock_max_loss');
+            $grid->column('fc_stock_max_loss');
+            
             $grid->column('created_at');
         
             $grid->disableCreateButton();
@@ -56,6 +67,11 @@ class AdminUserController extends AdminController
             // ->chunkSize(1024)
             // ->autoUpload();
             $form->url('push_api');
+            $form->decimal('crpto_max_loss');
+            $form->decimal('a_stock_max_loss');
+            $form->decimal('hk_stock_max_loss');
+            $form->decimal('us_stock_max_loss');
+            $form->decimal('fc_stock_max_loss');
 
             $form->saving(function (Form $form) {
                 if (strlen($form->password) != 60)

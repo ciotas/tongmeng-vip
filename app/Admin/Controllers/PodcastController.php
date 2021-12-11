@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\Podcast;
 use App\Models\Exchange;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -45,6 +46,10 @@ class PodcastController extends AdminController
             $grid->column('updated_at')->sortable();
         
             $grid->disableViewButton();
+            if (Admin::user()->id > 1) {
+                $grid->disableEditButton();
+                $grid->disableDeleteButton();
+            }
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
         
@@ -62,11 +67,10 @@ class PodcastController extends AdminController
     {
         return Form::make(new Podcast(), function (Form $form) {
             $form->display('id');
-            $form->select('market')->options(Exchange::$marketsMap)->load('exchange_id', 'api/exchanges');
+            $form->select('market')->options(Exchange::$marketsMap)->load('exchange_id', 'api/exchanges')->default(Exchange::BINANCE_FUTURES_USDT);
             $form->select('exchange_id');
-            $form->decimal('price');
             $form->select('period')->options(Exchange::$periods)->help('大周期-小周期-极小周期');
-
+            $form->decimal('price');
             $form->image('image')
             ->uniqueName()
             ->move('images')

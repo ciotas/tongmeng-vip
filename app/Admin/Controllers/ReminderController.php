@@ -22,6 +22,9 @@ class ReminderController extends AdminController
     protected function grid()
     {
         return Grid::make(new Reminder(), function (Grid $grid) {
+
+            $grid->model()->where('admin_user_id', Admin::user()->id);
+
             $grid->column('id')->sortable();
             $grid->column('market', '交易所')->display(function($val) {
                 return Exchange::$marketsMap[$val];
@@ -60,7 +63,7 @@ class ReminderController extends AdminController
     {
         return Form::make(new Reminder(), function (Form $form) {
             $form->display('id');
-            $form->select('market', '交易所')->options(Exchange::$marketsMap)->load('exchange_id', 'api/exchanges');
+            $form->select('market', '交易所')->options(Exchange::$marketsMap)->load('exchange_id', 'api/exchanges')->default(Exchange::BINANCE_FUTURES_USDT);
             $form->select('exchange_id');
             $form->select('peroid')->options(Exchange::$periods)->help('大周期-小周期-极小周期');
             $form->decimal('price');

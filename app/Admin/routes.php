@@ -23,9 +23,12 @@ Route::group([
     $router->resource('podcasts', 'PodcastController');
     // 订阅用户
     $router->resource('subscribers', 'SubscriberController');
-    
+    // 持仓
+    $router->resource('barns', 'BarnController');
     // api
     // 获取市场
     $router->get('/api/exchanges', 'ApiController@exchanges');
+    // 获取价格
+    $router->get('/api/price', 'ApiController@latestPrice');
 
 });
