@@ -46,9 +46,10 @@ class PodcastController extends AdminController
             $grid->column('updated_at')->sortable();
         
             $grid->disableViewButton();
-            if (Admin::user()->id > 1) {
+            if (Admin::user()->getKey() > 1) {
                 $grid->disableEditButton();
                 $grid->disableDeleteButton();
+                $grid->disableCreateButton();
             }
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
