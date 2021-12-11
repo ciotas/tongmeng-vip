@@ -45,6 +45,11 @@ class ReminderController extends AdminController
                 
                 return ReminderRecordsTable::make();
             });
+            if ( Admin::user()->getKey() == 1) {
+                $grid->column('admin_user_id', '用户')->display(function($val) {
+                    return Admin::user()->name;
+                });
+            }
             $grid->column('updated_at')->sortable();
         
             $grid->disableViewButton();
