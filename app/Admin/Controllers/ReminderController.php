@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Renderable\ReminderRecordsTable;
+use App\Models\AdminUser;
 use App\Models\Exchange;
 use App\Models\Market;
 use App\Models\Reminder;
@@ -47,7 +48,7 @@ class ReminderController extends AdminController
             });
             if ( Admin::user()->getKey() == 1) {
                 $grid->column('admin_user_id', '用户')->display(function($val) {
-                    return Admin::user()->name;
+                    return AdminUser::find($val)->name;
                 });
             }
             $grid->column('updated_at')->sortable();

@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\AdminUser;
 use App\Models\Barn;
 use App\Models\Exchange;
 use App\Service\BinanceFutureService;
@@ -70,7 +71,7 @@ class BarnController extends AdminController
             });
             if ( Admin::user()->getKey() == 1) {
                 $grid->column('admin_user_id', '用户')->display(function($val) {
-                    return Admin::user()->name;
+                    return AdminUser::find($val)->name;
                 });
             }
             $grid->column('updated_at');
