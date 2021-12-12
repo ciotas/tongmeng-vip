@@ -26,7 +26,7 @@ class ReminderController extends AdminController
                 $grid->model()->where('admin_user_id', Admin::user()->getKey());
             }
 
-            $grid->column('id')->sortable();
+            // $grid->column('id')->sortable();
             $grid->column('market', '交易所')->display(function($val) {
                 return Exchange::$marketsMap[$val];
             });
@@ -73,7 +73,7 @@ class ReminderController extends AdminController
             $form->select('exchange_id');
             $form->select('peroid')->options(Exchange::$periods)->help('大周期-小周期-极小周期');
             $form->decimal('price');
-            $form->switch('online');
+            $form->switch('online')->default(1);
             $form->hidden('admin_user_id');
             $form->display('created_at');
             $form->display('updated_at');

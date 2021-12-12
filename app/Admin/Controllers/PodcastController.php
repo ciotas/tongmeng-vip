@@ -20,7 +20,7 @@ class PodcastController extends AdminController
     protected function grid()
     {
         return Grid::make(new Podcast(), function (Grid $grid) {
-            $grid->column('id')->sortable();
+            // $grid->column('id')->sortable();
             $grid->column('market')->display(function($val) {
                 return Exchange::$marketsMap[$val];
             });
