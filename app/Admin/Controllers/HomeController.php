@@ -15,8 +15,7 @@ class HomeController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Dashboard')
-            ->description('Description...')
+            ->header('行情图')
             ->body(
                 $card = Card::make(view('admin.tradingview'))
             );

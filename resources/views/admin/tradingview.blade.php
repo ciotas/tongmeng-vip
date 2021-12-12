@@ -8,7 +8,7 @@
   {
   "width": 1080,
   "height": 610,
-  "symbol": "NASDAQ:AAPL",
+  "symbol": "ETHUSDTPERP",
   "interval": "D",
   "timezone": "Etc/UTC",
   "theme": "dark",
