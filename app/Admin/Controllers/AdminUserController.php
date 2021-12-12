@@ -24,7 +24,7 @@ class AdminUserController extends AdminController
                 $grid->model()->where('id', Admin::user()->getKey());
             }
 
-            $grid->column('id')->sortable();
+            // $grid->column('id')->sortable();
             $grid->column('username');
             $grid->column('name');
             // $grid->column('avatar');
