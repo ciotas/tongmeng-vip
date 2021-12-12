@@ -36,9 +36,7 @@ class ReminderController extends AdminController
                 $exchange = Exchange::find($val);
                 return $exchange ? $exchange->symbol : '';
             });
-            $grid->column('peroid')->display(function($val) {
-                return Exchange::$periods[$val] ?? '';
-            });
+            $grid->column('peroid')->select(Exchange::$periods, true);
             $grid->column('price')->display(function($val) {
                 return floatval($val);
             })->editable();

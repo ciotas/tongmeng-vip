@@ -324,12 +324,12 @@ return [
         // sidebar-separate
         'body_class' => [],
 
-        'horizontal_menu' => false,
+        'horizontal_menu' => true,
 
-        'sidebar_collapsed' => true,
+        'sidebar_collapsed' => false,
 
         // light, primary, dark
-        'sidebar_style' => 'light',
+        'sidebar_style' => 'dark',
 
         'dark_mode_switch' => false,
 
