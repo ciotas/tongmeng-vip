@@ -23,6 +23,7 @@ class BarnController extends AdminController
     protected function grid()
     {
         return Grid::make(new Barn(), function (Grid $grid) {
+            $grid->model()->orderBy('updated_at', 'desc');
             if ( Admin::user()->getKey() > 1) {
                 $grid->model()->where('admin_user_id', Admin::user()->getKey());
             }
