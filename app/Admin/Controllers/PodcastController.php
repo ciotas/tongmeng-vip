@@ -21,6 +21,7 @@ class PodcastController extends AdminController
     {
         return Grid::make(new Podcast(), function (Grid $grid) {
             // $grid->column('id')->sortable();
+            $grid->model()->where('updated_at', 'desc');
             $grid->column('market')->display(function($val) {
                 return Exchange::$marketsMap[$val];
             });
@@ -80,7 +81,7 @@ class PodcastController extends AdminController
             ->autoUpload();
 
             $form->textarea('tips');
-            $form->switch('online');
+            $form->switch('online')->default(1);
             $form->disableViewCheck();
             $form->disableViewButton();
         });
