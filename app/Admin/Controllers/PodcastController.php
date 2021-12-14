@@ -30,10 +30,9 @@ class PodcastController extends AdminController
             });
             $grid->column('price')->display(function($val) {
                 return floatval($val);
-            });
-            $grid->column('period')->display(function($val) {
-                return Exchange::$periods[$val];
-            });
+            })->editable();
+            $grid->column('peroid')->select(Exchange::$periods, true);
+            
             $grid->column('image')->image('', 80,80);
            
             $grid->column('tips')->display('查看')->modal(function ($modal) {
