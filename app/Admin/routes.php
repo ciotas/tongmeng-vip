@@ -25,6 +25,9 @@ Route::group([
     $router->resource('subscribers', 'SubscriberController');
     // 持仓
     $router->resource('barns', 'BarnController');
+    // 要闻Feeds
+    $router->get('feeds', 'HomeController@getFeeds');
+
     // api
     // 获取市场
     $router->get('/api/exchanges', 'ApiController@exchanges');

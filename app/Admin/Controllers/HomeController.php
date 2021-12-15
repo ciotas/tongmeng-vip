@@ -9,6 +9,7 @@ use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Card;
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
@@ -19,5 +20,10 @@ class HomeController extends Controller
             ->body(
                 $card = Card::make(view('admin.tradingview'))
             );
+    }
+
+    public function getFeeds()
+    {
+        return Redirect::to('http://news.10jqka.com.cn/clientinfo/24hourscroll.html###');
     }
 }
