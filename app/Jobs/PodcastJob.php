@@ -59,8 +59,8 @@ class PodcastJob implements ShouldQueue
                     $podcast_price = floatval($this->podcast->price);
                     $response = $client->post(env('XIZHI_PODCAST_API'),
                     ['form_params' => [
-                        'title' => $symbol.'价格触发'.$podcast_price,
-                        'content' => "标的：".$symbol."  触发价格：".$podcast_price."  触发时间：".Carbon::now()->toDateTimeString(),
+                        'title' => $symbol.'价格触发'.$podcast_price.';最佳周期：'.$this->podcast->period.';操作提示：'.$this->podcast->tips,
+                        'content' => "标的：".$symbol."  触发价格：".$podcast_price." 最佳周期：".$this->podcast->period." 操作提示：".$this->podcast->tips."  触发时间：".Carbon::now()->toDateTimeString(),
                         ]
                     ]);
                     Log::info('Podcast Response:');
