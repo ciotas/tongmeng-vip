@@ -64,7 +64,7 @@ class ReminderJob implements ShouldQueue
                         $reminder_price = floatval($this->reminder->price);
                         $response = $client->post($push_api,
                         ['form_params' => [
-                            'title' => '【提醒】'.$symbol.'价格触发'.$reminder_price,
+                            'title' => '【提醒】'.$symbol.'价格触发'.$reminder_price.' 最佳周期：'.Exchange::$periods[$this->reminder->peroid],
                             'content' => "标的：".$symbol."  触发价格：".$reminder_price."  触发时间：".Carbon::now()->toDateTimeString(),
                             ]
                         ]);
